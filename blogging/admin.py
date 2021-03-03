@@ -1,7 +1,17 @@
 from django.contrib import admin
-# Register your models here.
 from blogging.models import Post, Category
 
-# and a new admin registration
-admin.site.register(Post)
-admin.site.register(Category)
+
+class CategoryInline(admin.TabularInline):
+    model = Category.post.through
+
+class PostAdmin(admin.ModelAdmin):
+    inlines = [
+        CategoryInline,
+    ]
+
+class CategoryAdmin(admin.ModelAdmin):
+    exclude = ('post',)
+
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Post, PostAdmin)
