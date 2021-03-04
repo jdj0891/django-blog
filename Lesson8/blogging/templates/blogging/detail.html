@@ -9,9 +9,23 @@
 <div class="post-body">
   {{ post.text }}
 </div>
+
 <ul class="categories">
   {% for category in post.categories.all %}
     <li>{{ category }}</li>
   {% endfor %}
 </ul>
+
+<ul class="comment">
+  {% for comment in post.comments.all %}
+    <li>{{ comment }}</li>
+  {% endfor %}
+</ul>
+
+<form method="post" >
+    {% csrf_token %}
+    {{comment_form}}
+    <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+</form>
+
 {% endblock %}

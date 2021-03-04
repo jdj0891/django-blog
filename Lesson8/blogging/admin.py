@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blogging.models import Post, Category
+from blogging.models import Post, Category, Comment
 
 
 class CategoryInline(admin.TabularInline):
@@ -13,5 +13,7 @@ class PostAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     exclude = ('post',)
 
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Post, PostAdmin)
+admin.site.register(Comment)
